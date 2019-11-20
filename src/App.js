@@ -2,7 +2,8 @@ import React from 'react';
 import './App.css';
 import Navbar from './navbar';
 import Onemoviebox from'./onemoviebox';
-import Rating from './rating'
+import Rating from './rating';
+import Spiner from './Spiner';
 
 const movies=[{
   image:"https://upload.wikimedia.org/wikipedia/en/f/f0/Lion_%282016_film%29.png",
@@ -26,7 +27,9 @@ class App extends React.Component {
       listofmovies : movies,
       newRating: 1,
       name:"",
+      loading:true,
     }
+    setTimeout(() => this.setState({loading: false}), 5000)
   }
   // ★  ✩
 addmovie=()=> {
@@ -55,7 +58,7 @@ render(){
     <Rating toCard={false} rating={this.state.newRating} ratingMovie={rating => this.setRating(rating)}/>
 
       </div>
-    <Onemoviebox movies={this.state.listofmovies.filter(el => el.rating >= this.state.newRating && el.title.includes(this.state.name.toUpperCase().trim()))}/>
+    <Onemoviebox isLoading={this.state.loading} movies={this.state.listofmovies.filter(el => el.rating >= this.state.newRating && el.title.includes(this.state.name.toUpperCase().trim()))}/>
     <button className='add' onClick={this.addmovie}>Add your movie</button>
     </div>
   );

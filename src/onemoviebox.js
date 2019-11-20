@@ -1,5 +1,6 @@
 import React from 'react';
 import Rating from './rating';
+import HOC from './HOC'
     class Onemoviebox extends React.Component {
 	    constructor(props) {
 	        super(props)
@@ -19,4 +20,4 @@ import Rating from './rating';
                     )
 
 }}
-export default Onemoviebox;
+export default HOC(Onemoviebox);
